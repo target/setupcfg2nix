@@ -4,7 +4,7 @@ import argparse
 
 def main():
     parser = argparse.ArgumentParser(description='Parse a setuptools setup.cfg into nix expressions')
-    parser.add_argument('cfgfile', metavar='CFGFILE', nargs='?', default='setup.cfg')
+    parser.add_argument('cfgfile', metavar='CFGFILE', nargs='?', default='setup.cfg', help='The path to the configuration file (defaults to setup.cfg)')
     args = parser.parse_args()
     cfg = read_configuration(args.cfgfile)
     print('{ pname            = "', cfg['metadata']['name'], '";', sep='')
