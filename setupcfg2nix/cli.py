@@ -7,8 +7,6 @@ def main():
     parser.add_argument('cfgfile', metavar='CFGFILE', nargs='?', default='setup.cfg')
     args = parser.parse_args()
     cfg = read_configuration(args.cfgfile)
-    # TODO proper nix prettyprinter
-    # TODO validity checks, escapes
     print('{ pname            = "', cfg['metadata']['name'], '";', sep='')
     print('  version          = "', cfg['metadata']['version'], '";', sep='')
     install_requires = cfg['options']['install_requires']
