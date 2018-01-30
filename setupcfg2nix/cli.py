@@ -3,6 +3,17 @@ from setuptools.config import read_configuration
 import argparse
 
 def main():
+    """Parses a setup.cfg file and prints a nix representation to stdout.
+
+    The path to the setup.cfg is parsed from sys.argv.
+
+    Args:
+        cfg (str): The path to the setup.cfg file, defaults to 'setup.cfg' in the current directory
+
+    Returns:
+        None: Prints to stdout
+
+    """
     parser = argparse.ArgumentParser(description='Parse a setuptools setup.cfg into nix expressions')
     parser.add_argument('cfg', metavar='CFG', nargs='?', default='setup.cfg', help='The path to the configuration file (defaults to setup.cfg)')
     args = parser.parse_args()
