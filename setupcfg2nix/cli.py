@@ -4,9 +4,9 @@ import argparse
 
 def main():
     parser = argparse.ArgumentParser(description='Parse a setuptools setup.cfg into nix expressions')
-    parser.add_argument('cfgfile', metavar='CFGFILE', nargs='?', default='setup.cfg', help='The path to the configuration file (defaults to setup.cfg)')
+    parser.add_argument('cfg', metavar='CFG', nargs='?', default='setup.cfg', help='The path to the configuration file (defaults to setup.cfg)')
     args = parser.parse_args()
-    cfg = read_configuration(args.cfgfile)
+    cfg = read_configuration(args.cfg)
     print('{ pname            = "', cfg['metadata']['name'], '";', sep='')
     print('  version          = "', cfg['metadata']['version'], '";', sep='')
     install_requires = cfg['options']['install_requires']
