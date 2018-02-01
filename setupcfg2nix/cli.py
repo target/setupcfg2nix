@@ -20,14 +20,21 @@ def main():
     cfg = read_configuration(args.cfg)
     print('{ pname            = "', cfg['metadata']['name'], '";', sep='')
     print('  version          = "', cfg['metadata']['version'], '";', sep='')
-    install_requires = cfg['options']['install_requires']
-    if install_requires:
-        print('  install_requires = ')
-        print('    [ "', install_requires[0], '"', sep='')
-        for req in install_requires[1:]:
-            print('     "', req, '"', sep='')
-        print('    ];')
+
+    print_dependencies(cfg, 'install_requires')
+    print_dependencies(cfg, 'setup_requires')
+    print_dependencies(cfg, 'tests_require')
+
     print('}')
+
+def print_dependencies(cfg, name):
+    deps = cfg['options'].get(name, [])
+    if deps:
+        print('  ' + name + ' = ')
+        print('    [ "', deps[0], '"', sep='')
+        for req in deps[1:]:
+            print('      "', req, '"', sep='')
+        print('    ];')
 
 if __name__ == '__main__':
     main()
