@@ -33,7 +33,7 @@ def print_dependencies(cfg, name):
         print('  ' + name + ' = ')
         print('    [ "', deps[0], '"', sep='')
         for req in deps[1:]:
-            print('     "', req, '"', sep='')
+            print('      "', req, '"', sep='')
         print('    ];')
 
 if __name__ == '__main__':
