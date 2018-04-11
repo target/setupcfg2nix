@@ -59,6 +59,7 @@ def main():
 
     Args:
         cfg (str): The path to the setup.cfg file, defaults to 'setup.cfg' in the current directory
+        allow_autogeneration (bool): Whether to fall-back to autogeneration from the setup.py in the same directory as 'cfg' if 'cfg' is inadequate.
 
     Returns:
         None: Prints to stdout
