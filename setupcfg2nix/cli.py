@@ -72,26 +72,23 @@ def main():
         cfg = read_configuration_with_fallback(args.cfg)
     else:
         cfg = read_configuration(args.cfg)
-    print(f"{{ pname            = ''{cfg['metadata']['name']}'';")
-    print(f"  version          = ''{cfg['metadata']['version']}'';")
+    print('{')
+    print(f"  pname = ''{cfg['metadata']['name']}'';")
+    print(f"  version = ''{cfg['metadata']['version']}'';")
 
     for r in requires_sets:
         print_dependencies(cfg, r)
 
     print('}')
 
-def dep_name(dep):
-    return Requirement.parse(dep).project_name
-
 def print_dependencies(cfg, name):
     deps = cfg['options'].get(name, [])
     if deps:
-        print(f"  {name} = ")
-        # TODO should we care about 'extras'?
-        print(f"    [ ''{dep_name(deps[0])}''")
-        for req in deps[1:]:
-            print(f"      ''{dep_name(req)}''")
-        print('    ];')
+        print(f"  {name} = [")
+        for req in deps:
+            # TODO should we care about 'extras'?
+            print(f"    ''{Requirement.parse(req).project_name}''")
+        print('  ];')
 
 if __name__ == '__main__':
     main()
