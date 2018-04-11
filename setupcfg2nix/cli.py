@@ -1,4 +1,5 @@
 from setuptools.config import read_configuration
+from pkg_resources import Requirement
 import argparse
 import unittest.mock
 import errno
@@ -83,9 +84,10 @@ def print_dependencies(cfg, name):
     deps = cfg['options'].get(name, [])
     if deps:
         print('  ' + name + ' = ')
-        print('    [ "', deps[0], '"', sep='')
+        # TODO should we care about 'extras'?
+        print('    [ "', Requirement.parse(deps[0]).project_name, '"', sep='')
         for req in deps[1:]:
-            print('      "', req, '"', sep='')
+            print('      "', Requirement.parse(req).project_name, '"', sep='')
         print('    ];')
 
 if __name__ == '__main__':
