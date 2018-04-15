@@ -16,14 +16,3 @@ by `pythonPackages.buildSetupcfg` in [nixpkgs]. See the
 
 [nixpkgs]: https://nixos.org/nixpkgs
 [documentation]: https://github.com/NixOS/nixpkgs/blob/master/pkgs/build-support/build-setupcfg/default.nix
-
-Packages without setup.cfg
----------------------------
-
-For packages lacking a declarative `setup.cfg`, `setupcfg2nix` can try
-to generate one as an intermediate temporary file and generate nix
-expressions anyway. This involves running potentially untrusted python
-code, so it requires the `--allow-autogeneration` flag to be enabled.
-If the requested `setup.cfg` doesn't exist or does not contain the
-full package metadata, `setupcfg2nix` will use `setup.py` in the same
-directory instead.
